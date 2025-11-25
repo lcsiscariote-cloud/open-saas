@@ -1,0 +1,537 @@
+Va, vamos a dejar esto ya como **metodología formal + template** para que lo puedas pegar en cualquier IA y que, partiendo de una idea, te genere todo.
+
+---
+
+## 1. Metodología “Vibe Planning” (versión formal)
+
+Fases:
+
+1. **Fase 0 – Idea**
+
+   * Input: descripción libre de la idea.
+   * Output: nada todavía, solo contexto.
+
+2. **Fase 1 – Visión del producto**
+
+   * Archivo: `00-vision-producto.md`
+   * Define problema, usuarios, propuesta de valor y criterios de éxito.
+
+3. **Fase 2 – Diseño funcional**
+
+   * Archivo: `01-user-flows.md`
+   * Archivo: `02-modelo-datos.md`
+   * Archivo: `03-epics-stories.md`
+   * Define flujos de usuario, modelo de datos y épicas/historias.
+
+4. **Fase 3 – Alcance del MVP**
+
+   * Archivo: `04-alcance-mvp.md`
+   * Define qué entra y qué se queda fuera en la primera versión.
+
+5. **Fase 4 – Plan de implementación**
+
+   * Archivo: `05-implementation-plan.md`
+   * Lista de tareas técnicas (checklist) derivadas de las historias.
+
+6. **Fase 5 – Guardrails y prompts**
+
+   * Archivo: `AGENTS.md`
+   * Carpeta: `prompts/`
+   * Reglas para el agente de código + prompts para que trabaje con este esquema.
+
+---
+
+## 2. Estructura de carpetas estándar
+
+```text
+/planning
+  00-vision-producto.md
+  01-user-flows.md
+  02-modelo-datos.md
+  03-epics-stories.md
+  04-alcance-mvp.md
+  05-implementation-plan.md
+  AGENTS.md
+  prompts/
+    01-system-prompt.md
+    02-vibe-coding-prompt.md
+```
+
+---
+
+## 3. Templates formales de cada archivo
+
+### 3.1 `00-vision-producto.md`
+
+```markdown
+# 00 – Visión del producto
+
+## 1. Contexto general
+- Nombre tentativo del producto:
+- Tipo de producto (web, móvil, SaaS, etc.):
+- Industria / nicho:
+
+## 2. Problema principal
+Describe el problema o dolor que se busca resolver.
+
+- Problema central:
+- Por qué este problema es relevante:
+- Consecuencias actuales de no resolverlo:
+
+## 3. Usuarios objetivo
+Describe los perfiles principales de usuario.
+
+### 3.1. Perfil 1
+- Nombre del perfil:
+- Rol / ocupación:
+- Objetivos principales:
+- Dolores / frustraciones:
+
+### 3.2. Perfil 2 (opcional)
+- Nombre del perfil:
+- Rol / ocupación:
+- Objetivos principales:
+- Dolores / frustraciones:
+
+## 4. Propuesta de valor
+Define qué hace único al producto.
+
+- Promesa principal al usuario:
+- Beneficios clave (bullets):
+  - …
+  - …
+
+## 5. Casos de uso principales
+Enumera los escenarios de uso más importantes.
+
+1. Caso de uso 1:  
+   - Descripción:
+   - Usuarios involucrados:
+2. Caso de uso 2:  
+   - Descripción:
+   - Usuarios involucrados:
+
+## 6. Criterios de éxito
+Define cómo sabrás que el producto funciona.
+
+- Métricas cuantitativas (sign-ups, retención, etc.):
+- Métricas cualitativas (feedback, satisfacción, etc.):
+- Horizonte temporal esperado:
+```
+
+---
+
+### 3.2 `01-user-flows.md`
+
+```markdown
+# 01 – Flujos de usuario
+
+## 1. Lista de pantallas principales
+- Pantalla 1:
+- Pantalla 2:
+- Pantalla 3:
+- (Agregar las necesarias)
+
+## 2. Flujo: Registro / acceso
+
+### 2.1 Descripción
+Explica qué ocurre en este flujo y por qué es importante.
+
+### 2.2 Pasos del flujo
+1. Paso 1:
+2. Paso 2:
+3. Paso 3:
+
+### 2.3 Estados / variantes
+- Estado normal:
+- Errores frecuentes:
+- Casos especiales:
+
+---
+
+## 3. Flujo: [Nombre del flujo 2]
+
+### 3.1 Descripción
+
+### 3.2 Pasos del flujo
+
+### 3.3 Estados / variantes
+
+---
+
+## 4. Notas adicionales
+- Dependencias entre flujos:
+- Consideraciones de UX:
+- Reglas de negocio importantes:
+```
+
+---
+
+### 3.3 `02-modelo-datos.md`
+
+```markdown
+# 02 – Modelo de datos
+
+## 1. Visión general
+Breve resumen del modelo de datos y su objetivo.
+
+## 2. Entidades principales
+
+### 2.1 Entidad: [Nombre de entidad 1]
+- Descripción:
+- Tabla/colección: `[nombre_tabla]`
+
+Campos:
+| Campo          | Tipo      | Obligatorio | Descripción                         |
+|----------------|-----------|------------|-------------------------------------|
+| id             | uuid/int  | Sí         | Identificador único                 |
+| campo_1        | tipo      | Sí/No      | Descripción                         |
+| campo_2        | tipo      | Sí/No      | Descripción                         |
+
+### 2.2 Entidad: [Nombre de entidad 2]
+- Descripción:
+- Tabla/colección: `[nombre_tabla]`
+
+Campos:
+| Campo | Tipo | Obligatorio | Descripción |
+|-------|------|------------|-------------|
+
+## 3. Relaciones entre entidades
+Describe las relaciones más importantes.
+
+- Relación 1:
+  - Tipo (1–N, N–N, etc.):
+  - Entidades involucradas:
+  - Descripción:
+- Relación 2:
+  - …
+
+## 4. Reglas de integridad y validación
+- Reglas de negocio relevantes:
+- Restricciones de datos:
+- Validaciones clave:
+
+## 5. Integraciones externas (opcional)
+- API / servicio externo:
+- Datos que se envían:
+- Datos que se reciben:
+- Frecuencia / triggers:
+```
+
+---
+
+### 3.4 `03-epics-stories.md`
+
+```markdown
+# 03 – Épicas y Historias de Usuario
+
+## Épica 1: [Nombre de la épica]
+**Descripción:**  
+Describe el objetivo general de esta épica y el valor que entrega.
+
+### Historia 1.1 – [Título corto de la historia]
+Como **[tipo de usuario]**  
+quiero **[acción que desea realizar]**  
+para **[beneficio o resultado esperado]**.
+
+**Criterios de aceptación:**
+- Criterio 1:
+- Criterio 2:
+- Criterio 3:
+
+**Notas / Dependencias:**
+- Dependencia con otras historias:
+- Reglas adicionales:
+
+---
+
+### Historia 1.2 – [Título corto de la historia]
+(Usar el mismo formato)
+
+---
+
+## Épica 2: [Nombre de la épica]
+**Descripción:**
+
+### Historia 2.1 – [Título corto]
+(Usar el mismo formato)
+```
+
+---
+
+### 3.5 `04-alcance-mvp.md`
+
+```markdown
+# 04 – Alcance del MVP
+
+## 1. Objetivo del MVP
+Describe qué se busca validar en esta primera versión.
+
+## 2. Alcance funcional (incluido en MVP)
+
+### 2.1 Funcionalidades Must-have
+Funcionalidades críticas que sí o sí deben estar.
+
+- [Épica/Historia] – Descripción breve:
+- [Épica/Historia] – Descripción breve:
+
+### 2.2 Funcionalidades Should-have
+Importantes, pero se pueden mover a iteraciones siguientes si es necesario.
+
+- Descripción breve:
+- …
+
+### 2.3 Funcionalidades Nice-to-have
+Deseables, pero no necesarias para el MVP.
+
+- Descripción breve:
+- …
+
+## 3. Exclusiones explícitas (fuera de alcance)
+Lista de cosas que **no** se implementarán en el MVP.
+
+- Funcionalidad excluida 1:
+- Funcionalidad excluida 2:
+
+## 4. Restricciones y supuestos
+- Restricción técnica:
+- Restricción de negocio:
+- Supuesto relevante:
+
+## 5. Criterios de éxito del MVP
+- Métricas mínimas a lograr:
+- Señales para decidir si se itera, pivotea o se descarta:
+```
+
+---
+
+### 3.6 `05-implementation-plan.md`
+
+```markdown
+# 05 – Implementation Plan (Plan de implementación)
+
+> Nota: agrupa tareas por áreas (CONFIG, DB, API, UI, TEST, DOCS, etc.) y relaciónalas con historias de usuario.
+
+## 1. Setup y fundación
+
+[CONFIG] [ ] Crear repositorio y entorno base del proyecto  
+Detalle: …
+
+[CONFIG] [ ] Configurar dependencias principales (framework, ORM, testing, etc.)  
+Detalle: …
+
+[DOCS]   [ ] Actualizar README con instrucciones de instalación  
+Detalle: …
+
+---
+
+## 2. Modelo de datos
+
+[DB] [ ] Implementar migraciones para entidades principales (lista aquí)  
+Relacionado con historias: …
+
+[DB] [ ] Configurar seeds / datos de prueba básicos  
+Detalle: …
+
+[TEST] [ ] Añadir tests de integridad de datos  
+Detalle: …
+
+---
+
+## 3. Flujos núcleo
+
+[UI]  [ ] Diseñar e implementar pantalla: [nombre pantalla]  
+Relacionado con historia: [ID historia]
+
+[API] [ ] Crear endpoint: [método + ruta]  
+Relacionado con historia: [ID historia]
+
+[TEST] [ ] Tests de integración / e2e para flujo: [nombre flujo]  
+Detalle: …
+
+---
+
+## 4. Vibe / IA / Automatización
+
+[PROMPT] [ ] Definir / refinar prompts de interacción con la IA  
+Detalle: …
+
+[CONFIG] [ ] Integrar agente de código / IDE con este repositorio  
+Detalle: …
+
+---
+
+## 5. Checklist de cierre
+
+[DOCS]  [ ] Actualizar documentación de usuario  
+[DOCS]  [ ] Registrar changelog del MVP  
+[TEST]  [ ] Ejecutar suite completa de tests y documentar resultados  
+[REVIEW] [ ] Revisión final de UX / demo interna
+```
+
+---
+
+### 3.7 `AGENTS.md`
+
+```markdown
+# AGENTS – Reglas para agentes de IA / IDE
+
+## 1. Rol del agente
+Eres un asistente de desarrollo que trabaja sobre este repositorio.  
+Debes:
+- Respetar la estructura de carpetas y convenciones definidas.
+- Leer primero los archivos de planificación en `/planning`.
+- Explicar brevemente tus cambios antes de proponer código.
+
+## 2. Prioridad de lectura
+Antes de realizar cualquier cambio, revisa en este orden:
+1. `planning/00-vision-producto.md`
+2. `planning/01-user-flows.md`
+3. `planning/02-modelo-datos.md`
+4. `planning/03-epics-stories.md`
+5. `planning/04-alcance-mvp.md`
+6. `planning/05-implementation-plan.md`
+7. Este archivo `AGENTS.md`
+
+## 3. Estilo de código
+- Usa: [lenguaje/framework principal].
+- Estándares:
+  - Tipado: [estricto / flexible].
+  - Patrón de componentes / capas:
+  - Convenciones de nombres:
+
+## 4. Reglas de edición
+- No edites más de **un archivo por operación** a menos que se indique explícitamente.
+- Antes de editar:
+  - Resume qué vas a hacer.
+  - Indica qué historia / tarea del plan estás ejecutando.
+- Después de editar:
+  - Resume el cambio.
+  - Indica impacto esperado.
+
+## 5. Reglas de arquitectura
+- No dupliques lógica; extrae helpers / hooks / servicios cuando sea necesario.
+- Sigue la estructura de carpetas definida por el proyecto.
+- No introduzcas dependencias nuevas sin justificar su uso.
+
+## 6. Documentación
+- Cada feature nueva debe:
+  - Referenciar la historia correspondiente.
+  - Actualizar README y/o `planning` si cambia el alcance.
+
+## 7. Petición de aclaraciones
+Si la especificación no es suficiente:
+- Haz preguntas claras y agrupadas.
+- Propón alternativas (A/B/C) si aplica.
+- No asumas decisiones críticas sin confirmación cuando haya riesgo alto.
+```
+
+---
+
+### 3.8 `prompts/01-system-prompt.md`
+
+```markdown
+# System Prompt – Vibe Planning + Coding
+
+Eres un asistente experto en:
+- Diseño de producto
+- Arquitectura de software
+- Desarrollo full-stack
+- Metodologías ágiles (épicas, historias, tareas)
+
+Siempre trabajas con la metodología definida en `/planning`:
+1. Visión del producto
+2. Flujos de usuario
+3. Modelo de datos
+4. Épicas e historias
+5. Alcance del MVP
+6. Plan de implementación
+7. Reglas de `AGENTS.md`
+
+Tu comportamiento:
+- Primero entiendes el contexto leyendo los archivos relevantes.
+- Luego propones un plan corto para cada petición.
+- Finalmente, ejecutas el plan paso a paso, explicando lo que haces.
+```
+
+---
+
+### 3.9 `prompts/02-vibe-coding-prompt.md`
+
+```markdown
+# Prompt – Vibe Coding sobre este proyecto
+
+Modo de trabajo:
+
+1. Lee siempre:
+   - `planning/05-implementation-plan.md`
+   - `planning/03-epics-stories.md`
+   - `AGENTS.md`
+
+2. Cuando el usuario te pida algo:
+   - Identifica la historia de usuario y la tarea del plan que corresponde.
+   - Propón un micro-plan de 3–5 pasos para resolverlo.
+   - Pide aclaraciones solo si realmente falta información crítica.
+
+3. Al escribir código:
+   - Explica qué archivo vas a modificar y por qué.
+   - Muestra solo los fragmentos relevantes (no todo el archivo, si es muy largo).
+   - Ajusta el código para cumplir los criterios de aceptación de la historia.
+
+4. Al terminar:
+   - Resume el cambio.
+   - Indica qué historia y tarea del plan quedan completadas.
+   - Si detectas mejoras estructurales, sugiérelas, pero no las apliques sin permiso.
+```
+
+---
+
+## 4. Prompt maestro para que una IA genere todo esto desde una idea
+
+Aquí tienes un prompt que puedes usar tal cual (lo pegas en otra IA y luego tú le das la idea):
+
+```markdown
+Quiero que actúes como arquitecto de producto y tech lead.
+
+Tu objetivo:
+A partir de UNA sola entrada de “idea de app” que te daré, debes generar la planificación completa siguiendo esta metodología y producir el contenido de los siguientes archivos, en este orden:
+
+1) `planning/00-vision-producto.md`
+2) `planning/01-user-flows.md`
+3) `planning/02-modelo-datos.md`
+4) `planning/03-epics-stories.md`
+5) `planning/04-alcance-mvp.md`
+6) `planning/05-implementation-plan.md`
+7) `planning/AGENTS.md`
+8) `planning/prompts/01-system-prompt.md`
+9) `planning/prompts/02-vibe-coding-prompt.md`
+
+Reglas:
+- Usa siempre el formato formal de headings y secciones de cada archivo.
+- Sé concreto pero suficientemente detallado para que otra IA pueda implementar la app solo leyendo estos archivos.
+- Mantén coherencia entre:
+  - Visión del producto
+  - Flujos de usuario
+  - Modelo de datos
+  - Épicas e historias
+  - Plan de implementación
+- En el Implementation Plan usa tags tipo [CONFIG], [DB], [API], [UI], [TEST], [DOCS], [PROMPT].
+
+Formato de salida:
+- Devuélveme todo en un solo mensaje, separado por bloques de código Markdown para cada archivo.
+- Antes de cada bloque, escribe una línea que indique el nombre del archivo, por ejemplo:
+  `// FILE: planning/00-vision-producto.md`
+
+Primero confirma que entendiste las instrucciones.  
+Después te daré la idea de app y generarás todos los archivos.
+```
+
+---
+
+Con esto ya tienes:
+
+* La **metodología** clara.
+* Los **templates formales**.
+* El **prompt maestro** para que otra IA te genere todo desde una idea.
+
+Si quieres, en el siguiente paso me das una idea concreta y te genero la carpeta `planning/` completa siguiendo tu propio template, para que la uses como ejemplo real.
